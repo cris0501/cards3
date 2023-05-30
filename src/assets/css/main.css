@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'cards-icon';
+  src:  url('./fonts/cards-icon.ttf?fps7m1') format('truetype'),
+    url('fonts/cards-icon.woff?fps7m1') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.icon {
+  @apply mx-4;
+  font-family: 'cards-icon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  color: #FFF;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-reload:before {
+  content: "\e900";
+}
+.icon-home:before {
+  content: "\e902";
+}
+.icon-pencil:before {
+  content: "\e905";
+}
+.icon-image:before {
+  content: "\e90d";
+}
+.icon-stack:before {
+  content: "\e92e";
+}
+.icon-download:before {
+  content: "\e960";
+}
+.icon-spinner:before {
+  content: "\e982";
+}
+.icon-search:before {
+  content: "\e986";
+}
+.icon-config:before {
+  content: "\e994";
+}
+.icon-list:before {
+  content: "\e9b9";
+}
+.icon-plus:before {
+  content: "\ea0a";
+}
+.icon-minus:before {
+  content: "\ea0b";
+}
+.icon-info:before {
+  content: "\ea0c";
+}
+.icon-cross:before {
+  content: "\ea0f";
+}
+.icon-checkmark:before,
+.icon-ok:before {
+  content: "\ea10";
+}
+.icon-play:before {
+  content: "\ea1c";
+}
+.icon-backward:before {
+  content: "\ea1f";
+}
+.icon-forward:before {
+  content: "\ea20";
+}
+.icon-infinite:before {
+  content: "\ea2f";
+}

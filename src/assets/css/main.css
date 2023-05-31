@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+p {
+  @apply text-white;
+}
+
 @font-face {
   font-family: 'cards-icon';
   src:  url('./fonts/cards-icon.ttf?fps7m1') format('truetype'),
@@ -25,6 +29,10 @@
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.btn i {
+  @apply flex items-center justify-center;
 }
 
 .icon-reload:before {

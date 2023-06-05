@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
   <div class="flex justify-evenly items-center flex-wrap w-full h-screen p-8 mt-12">
     <div class="card">
@@ -20,8 +17,20 @@
         <i class="icon icon-pencil"></i> Practica
       </div>
     </div>
+
+    <div class="card" @click="sys.loading">
+      <div>
+        <i class="icon icon-pencil"></i> {{ words }}
+      </div>
+    </div>
   </div>
 </template>
+
+<script setup>
+  import { useSysStore } from '@/stores/system'
+
+  const sys = useSysStore();
+</script>
 
 <style scoped>
   .card {

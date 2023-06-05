@@ -40,7 +40,7 @@
 
       <div class="flex flex-col justify-center items-center md:w-1/2">
         <p class="text-center text-2xl font-bold mb-8"> Categorias </p>
-        <div class="flex flex-col">
+        <div class="flex flex-col" @click="hola">
           <btn color="gray">
             <template #text>
               Vista frontal
@@ -51,39 +51,45 @@
               Vista posterior
             </template>
           </btn>
-          <btn color="gray">
+          <btn color="gray" @click="addWord">
             <template #text>
-              Ambas
+              {{ words }}
             </template>
           </btn>
         </div>
       </div>
     </div>
     
-    <div>
-      {{ words[0].esp }}
-    </div>
-
   </div>
 </template>
 
 <script>
-  import btn from '../components/Button.vue'
-  import { useWordsStore } from '@/stores/words.js'
+  import { ref } from 'vue'
+  import { useWordsStore } from '@/stores/words'
+  import add from '@/composables/useAddWord'
+  import btn from '@/components/Button.vue'
 
-  setup (){
-    const words = useWordsStore()
+  export default {
+    components: {
+      btn
+    },
+    setup(){
+      const words = useWordsStore() // use store
 
-    return {
-      words
+      function addWord (){
+        const aux = {
+          side_1: 'Adios',
+          side_2: 'Auf Wiedersen'
+        };
+        add(aux);
+      }
+
+      return {
+        addWord,
+        words:words.words,
+      }
     }
   }
-  //export default {
-  //  name: 'ConfigView',
-  //  components: {
-  //    btn
-  //  }
-  //}
 </script>
 
 <style scoped>

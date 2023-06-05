@@ -1,8 +1,5 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-</script>
-
 <template>
+  <loading />
   <picture class="absolute z-20 top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none" style="position:absolute;" draggable="false">
     <source srcset="/images/bg.avif" type="image/avif">
     <img src="/images/bg.png" alt="" class="w-[90rem] flex-none max-w-none" decoding="async">
@@ -19,6 +16,13 @@ import { RouterLink, RouterView } from 'vue-router'
 
   <RouterView />
 </template>
+
+<script setup>
+  import { RouterLink, RouterView } from 'vue-router'
+  import { useWordsStore } from '@/stores/words'
+  import loading from '@/components/Load.vue'
+
+</script>
 
 <style scoped>
 header {

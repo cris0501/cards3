@@ -12,7 +12,7 @@ export default function (aux){
     img_2: (aux.img_2) ? aux.img_2 : null,
     sound_2: (aux.sound_2) ? aux.sound_2 : null,
     info_2: (aux.info_2) ? aux.info_2 : null,
-    category: (aux.category) ? aux.category : 'otras'
+    category: (aux.category) ? aux.category : ''
   }
 
   useWords.addWord(new_word);

@@ -6,56 +6,56 @@
       <input type="file" class="hidden" id="file">
       <label for="file" class="file"> Cargar archivo </label>
 
-      <btn color="green">
+      <btnComponent color="green">
         <template #text>
           Guardar
         </template>
         <template #icon>
           <i class="icon icon-download"></i>
         </template>
-      </btn>
+      </btnComponent>
     </div>
 
     <div class="flex flex-col md:flex-row md:space-x-8 items-center">
       <div class="flex flex-col justify-center items-center md:w-1/2">
         <p class="text-center text-2xl font-bold mb-8"> Que lado de la tarjeta mostrar </p>
         <div class="flex flex-col">
-          <btn color="gray">
+          <btnComponent color="gray">
             <template #text>
               Vista frontal
             </template>
-          </btn>
-          <btn color="gray">
+          </btnComponent>
+          <btnComponent color="gray">
             <template #text>
               Vista posterior
             </template>
-          </btn>
-          <btn color="gray">
+          </btnComponent>
+          <btnComponent color="gray">
             <template #text>
               Ambas
             </template>
-          </btn>
+          </btnComponent>
         </div>
       </div>
 
       <div class="flex flex-col justify-center items-center md:w-1/2">
         <p class="text-center text-2xl font-bold mb-8"> Categorias </p>
         <div class="flex flex-col" @click="hola">
-          <btn color="gray">
+          <btnComponent color="gray">
             <template #text>
               Vista frontal
             </template>
-          </btn>
-          <btn color="gray">
+          </btnComponent>
+          <btnComponent color="gray">
             <template #text>
               Vista posterior
             </template>
-          </btn>
-          <btn color="gray" @click="addWord">
+          </btnComponent>
+          <btnComponent color="gray" @click="addWord">
             <template #text>
               {{ words }}
             </template>
-          </btn>
+          </btnComponent>
         </div>
       </div>
     </div>
@@ -63,32 +63,20 @@
   </div>
 </template>
 
-<script>
+<script setup>
   import { ref } from 'vue'
   import { useWordsStore } from '@/stores/words'
   import add from '@/composables/useAddWord'
-  import btn from '@/components/Button.vue'
+  import btnComponent from '@/components/Button.vue'
 
-  export default {
-    components: {
-      btn
-    },
-    setup(){
-      const words = useWordsStore() // use store
+  const words = useWordsStore() // use store
 
-      function addWord (){
-        const aux = {
-          side_1: 'Adios',
-          side_2: 'Auf Wiedersen'
-        };
-        add(aux);
-      }
-
-      return {
-        addWord,
-        words:words.words,
-      }
-    }
+  function addWord (){
+    const aux = {
+      side_1: 'Adios',
+      side_2: 'Auf Wiedersen'
+    };
+    add(aux);
   }
 </script>
 

@@ -19,25 +19,24 @@ export const useWordsStore = defineStore('words', () => {
     }
   ]);
 
-  ////////// Setters //////////
   function setShowCategories (aux){
     showCategories.value = aux;
   }
 
   function addWord( _new ) {
-    words.value.push(_new);
+    //words.value.push(_new);
 
-    //words.value.push({
-    //  side_1: 'Adios',
-    //  img_1: '',
-    //  sound_1: '',
-    //  info_1: '',
-    //  side_2: 'Auf Wiedersen',
-    //  img_2: '',
-    //  sound_2: '',
-    //  info_2: '',
-    //  category: 'Saludos',
-    //});
+    words.value.push({
+      side_1: (_new.side_1)? _new.side_1 : 'Adios',
+      img_1: (_new.img_1)? _new.img_1 : '',
+      sound_1: (_new.sound_1)? _new.sound_1 : '',
+      info_1: (_new.info_1)? _new.info_1 : '',
+      side_2: (_new.side_2)? _new.side_2 : 'Auf Wiedersen',
+      img_2: (_new.img_2)? _new.img_2 : '',
+      sound_2: (_new.sound_2)? _new.sound_2 : '',
+      info_2: (_new.info_2)? _new.info_2 : '',
+      category: (_new.category)? _new.category : 'Saludos',
+    });
   }
 
   return {

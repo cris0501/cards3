@@ -8,26 +8,18 @@
   </div>
 </template>
 
-<script>
-  import { onMounted, computed } from 'vue'
+<script setup>
+    import { onMounted, computed } from 'vue'
 
-  export default {
-    props: {
+    const props = defineProps({
       color: {
         type: String,
-        default: 'green',
+        default: 'green'
       }
-    },
-    setup (props){
-      const propBG = computed(() => `bg-${props.color}-500`);
-      //const propText = computed(() => `text-${props.color}-200`);
-      const propIcon = computed(() => `bg-${props.color}-800`);
-
-      return {
-        propBG, propIcon, //propText,
-      }
-    }
-  }
+    })
+    const propBG = computed(() => `bg-${props.color}-500`);
+    //const propText = computed(() => `text-${props.color}-200`);
+    const propIcon = computed(() => `bg-${props.color}-800`);
 </script>
 
 <style>

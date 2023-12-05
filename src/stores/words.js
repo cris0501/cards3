@@ -2,51 +2,51 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useWordsStore = defineStore('words', () => {
-  const side = ref('front'); // back
-  const categories = ref([]); // list of categories
-  const showCategories = ref([]); // []->all
-  const words = ref([
-    {
-      side_1: 'Hola',
-      img_1: null,
-      sound_1: null,
-      info_1: null,
-      side_2: 'Hallo',
-      img_2: null,
-      sound_2: null,
-      info_2: null,
-      category: 'Saludos',
-    }
-  ]);
+  const side = ref('front'); //Side show
+  const categories = ref({}); // cat: [{word}, {word}]
+  const showCategories = ref([]); // ['cat','cat']
+  const words = ref([]); // [{word}, {word}]
 
-  function setShowCategories (aux){
-    showCategories.value = aux;
+  function addCategory (_new){
+    if( Object.keys(categories).includes(_new.title) ) return false
+    categories.value[_new] = []
+    return true
   }
 
-  function addWord( _new ) {
-    //words.value.push(_new);
+  function showCategory (_category){
+    if( showCategories.value.includes(_category) ) return false
+    showCategories.value.push(_category)
+    return true
+  }
 
-    words.value.push({
-      side_1: (_new.side_1)? _new.side_1 : 'Adios',
+  function addWord (_new ){
+    const temp = {
+      side_1: (_new.side_1)? _new.side_1 : '',
       img_1: (_new.img_1)? _new.img_1 : '',
       sound_1: (_new.sound_1)? _new.sound_1 : '',
       info_1: (_new.info_1)? _new.info_1 : '',
-      side_2: (_new.side_2)? _new.side_2 : 'Auf Wiedersen',
+      side_2: (_new.side_2)? _new.side_2 : '',
       img_2: (_new.img_2)? _new.img_2 : '',
       sound_2: (_new.sound_2)? _new.sound_2 : '',
       info_2: (_new.info_2)? _new.info_2 : '',
-      category: (_new.category)? _new.category : 'Saludos',
-    });
+      category: (_new.category)? _new.category : 'Otras',
+    }
+
+    addCategory(temp.category)
+    categories.value[temp.category].push(temp) // Se agrega la palabra al array de la categoria
+    words.value.push(temp);
   }
 
   return {
     side,
     categories,
-    words,
-    showCategories,
+    addCategory,
 
-    setShowCategories,
-    addWord
+    words,
+    addWord,
+
+    showCategories,
+    showCategory,
   }
 })
 

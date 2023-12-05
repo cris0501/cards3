@@ -20,7 +20,7 @@
 
     <div class="card" @click="sys.loading">
       <div>
-        <i class="icon icon-pencil"></i> {{ words }}
+        <i class="icon icon-pencil"></i> {{ wordsStore.words }}
       </div>
     </div>
   </div>
@@ -28,8 +28,10 @@
 
 <script setup>
   import { useSysStore } from '@/stores/system'
+  import { useWordsStore } from '@/stores/words'
 
-  const sys = useSysStore();
+  const sysStore = useSysStore()
+  const wordsStore = useWordsStore()
 </script>
 
 <style scoped>

@@ -4,7 +4,7 @@
     <div class="flex flex-col items-center">
       <p class="text-2xl font-bold mb-8"> Palabras </p>
       <input type="file" class="hidden" id="file">
-      <label for="file" class="file"> Cargar archivo </label>
+      <label for="file" class="file"> Selecciona archivo </label>
 
       <btnComponent color="green">
         <template #text>
@@ -30,7 +30,7 @@
               Vista posterior
             </template>
           </btnComponent>
-          <btnComponent color="gray">
+          <btnComponent color="gray" @click="addWord">
             <template #text>
               Ambas
             </template>
@@ -41,21 +41,14 @@
       <div class="flex flex-col justify-center items-center md:w-1/2">
         <p class="text-center text-2xl font-bold mb-8"> Categorias </p>
         <div class="flex flex-col" @click="hola">
-          <btnComponent color="gray">
+          <btnComponent v-for="category in Object.keys(categories)"
+            :color="{'gray':!showCategory(category)}"
+            @click="show(category)">
             <template #text>
-              Vista frontal
+              {{ category }}
             </template>
           </btnComponent>
-          <btnComponent color="gray">
-            <template #text>
-              Vista posterior
-            </template>
-          </btnComponent>
-          <btnComponent color="gray" @click="addWord">
-            <template #text>
-              {{ words }}
-            </template>
-          </btnComponent>
+          <p> {{ showCategories }} </p>
         </div>
       </div>
     </div>
@@ -65,19 +58,37 @@
 
 <script setup>
   import { ref } from 'vue'
+  import { storeToRefs } from 'pinia'
   import { useWordsStore } from '@/stores/words'
-  import add from '@/composables/useAddWord'
   import btnComponent from '@/components/Button.vue'
 
-  const words = useWordsStore() // use store
+  const wordsStore = useWordsStore() // use store
+  const { categories, showCategories } = storeToRefs(wordsStore)
 
   function addWord (){
     const aux = {
       side_1: 'Adios',
       side_2: 'Auf Wiedersen'
     };
-    add(aux);
+    wordsStore.addWord(aux);
   }
+
+  function showCategory (category){
+    return showCategories.value.includes(category)
+  }
+
+  function show(category){
+    if ( showCategories.value.includes(category) ){
+      const index = showCategories.value.indexOf(category)
+      showCategories.value.splice(index, 1)
+    }
+    else showCategories.value.push(category)
+  }
+
+  //const _categories = computed( () => {
+  //  const keys = Object.keys(categories)
+  //  return keys.filter(item => showCategories.includes(item))
+  //})
 </script>
 
 <style scoped>

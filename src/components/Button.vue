@@ -1,6 +1,6 @@
 <template>
   <div :class="propBG" class="btn flex items-center justify-between rounded-lg pl-4 my-2 cursor-pointer">
-    <p class="w-full text-white text-center font-bold pr-4"> <slot name="text"></slot> </p>
+    <p class="w-full text-white text-center font-bold pr-4"> <slot></slot> </p>
     <div :class="propIcon" class="flex justify-center items-center rounded-r-lg" style="height: 40px;">
       <slot name="icon">
       </slot>

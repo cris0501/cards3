@@ -7,7 +7,7 @@ export const useWordsStore = defineStore('words', () => {
   const showCategories = ref([]); // ['cat','cat']
   const words = ref([]); // [{word}, {word}]
 
-  function addCategory (_new){
+  function addCategory (_new){ // object list of categories
     if( Object.keys(categories).includes(_new.title) ) return false
     categories.value[_new] = []
     return true

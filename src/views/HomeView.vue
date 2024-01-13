@@ -1,44 +1,36 @@
 <template>
-  <div class="flex justify-evenly items-center flex-wrap w-full h-screen p-8 mt-12">
+  <div class="flex flex-col md:flex-row justify-evenly items-center flex-wrap w-full h-screen p-8">
     <div class="card">
-      <div>
+      <router-link :to="{name: 'one'}">
         <i class="icon icon-stack"></i> Individuales
-      </div>
+      </router-link>
     </div>
 
     <div class="card">
-      <div>
+      <router-link :to="{name: 'list'}">
         <i class="icon icon-list"></i> Listado
-      </div>
+      </router-link>
     </div>
 
     <div class="card">
-      <div>
+      <router-link :to="{name: 'home'}">
         <i class="icon icon-pencil"></i> Practica
-      </div>
+      </router-link>
     </div>
 
-    <div class="card" @click="sys.loading">
-      <div>
-        <i class="icon icon-pencil"></i> {{ wordsStore.words }}
-      </div>
-    </div>
   </div>
 </template>
 
 <script setup>
-  import { useSysStore } from '@/stores/system'
-  import { useWordsStore } from '@/stores/words'
+  import { RouterLink, RouterView } from 'vue-router'
 
-  const sysStore = useSysStore()
-  const wordsStore = useWordsStore()
 </script>
 
 <style scoped>
   .card {
-    @apply flex items-center justify-stretch w-1/2 h-1/3 p-3;
+    @apply flex items-center justify-stretch w-full md:w-1/2 h-1/3 p-3;
   }
-    .card div {
-      @apply flex items-center justify-center w-full h-full rounded-lg text-white text-center text-lg font-bold bg-slate-700/[0.4] cursor-pointer;
+    .card a {
+      @apply flex items-center justify-center w-full h-full rounded-lg text-white text-center text-lg font-bold bg-slate-700/[0.3] cursor-pointer;
     }
 </style>

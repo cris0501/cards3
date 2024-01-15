@@ -1,6 +1,8 @@
 <template>
   <loading />
-  <picture class="absolute z-20 top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none h-screen" style="position:absolute;" draggable="false">
+  <stageStatus :status="statusThread" v-show="showStage"/>
+
+  <picture class="absolute z-20 top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none h-[100vh]" style="position:absolute;" draggable="false">
     <source srcset="/images/bg.avif" type="image/avif">
     <img src="/images/bg.png" alt="" class="w-[90rem] flex-none max-w-none" decoding="async">
   </picture>
@@ -15,9 +17,9 @@
     </router-link>
   </header>
 
-  <RouterView class="pt-20"/>
+  <RouterView class="min-h-[100vh] pt-20"/>
 
-  <Add v-show="showAdd" @close="toggleShowAdd"/>
+  <add v-show="showAdd" @close="toggleShowAdd"/>
 </template>
 
 <script setup>
@@ -25,9 +27,20 @@
   import { RouterLink, RouterView } from 'vue-router'
   import { useWordsStore } from '@/stores/words'
   import loading from '@/components/Load.vue'
-  import Add from '@/components/Add.vue'
+  import add from '@/components/Add.vue'
+  import stageStatus from '@/components/StageThread.vue'
 
   const showAdd = ref(false)
+  const showStage = ref(true)
+  const statusThread = ref('')
+  const w1 = new URL('/workers/updateWorker.js', import.meta.url)
+  const worker = new Worker(w1)
+
+  worker.addEventListener('message', ({data}) => {
+    showStage.value = data.show
+    statusThread.value = data.status
+  })
+  worker.postMessage('init')
 
   function toggleShowAdd (){
     showAdd.value = !showAdd.value

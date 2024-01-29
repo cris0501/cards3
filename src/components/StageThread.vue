@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-end w-full fixed bottom-0 right-0 py-1">
+  <div class="flex items-center justify-start right-2 fixed top-3 py-1 z-30">
     <p class="flex items-center font-bold">
       {{ props.status }}
     </p>

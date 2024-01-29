@@ -1,31 +1,41 @@
 <template>
   <loading />
   <stageStatus :status="statusThread" v-show="showStage"/>
-
-  <picture class="absolute z-20 top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none h-[100vh]" style="position:absolute;" draggable="false">
-    <source srcset="/images/bg.avif" type="image/avif">
-    <img src="/images/bg.png" alt="" class="w-[90rem] flex-none max-w-none" decoding="async">
-  </picture>
-
-  <header>
-    <router-link :to="{name: 'home'}">
-      <i class="icon icon-home"></i><p class="hidden md:inline"> Inicio </p>
-    </router-link>
-    <i class="icon icon-plus rounded-full text-center py-2 text-xs text-sky-400 font-bold bg-sky-400/[0.1] cursor-pointer px-4" @click="toggleShowAdd"></i>
-    <router-link :to="{name: 'config'}">
-      <i class="icon icon-config"></i><p class="hidden md:inline"> Configuración </p>
-    </router-link>
-  </header>
-
-  <RouterView class="min-h-[100vh] pt-20"/>
-
   <add v-show="showAdd" @close="toggleShowAdd"/>
+
+  <div class="flex flex-col w-full min-h-[100vh] pb-[84px] lg:pb-0 pl-0 lg:pl-[100px]">
+    <RouterView />
+  </div>
+
+  <footer>
+    <nav>
+      <router-link :to="{name: 'home'}">
+        <div>
+          <i class="icon icon-home"></i>
+          <p class=""> Inicio </p>
+        </div>
+      </router-link>
+      <div @click="toggleShowAdd">
+        <div>
+          <i class="icon icon-plus"></i>
+          <p class=""> Agregar </p>
+        </div>
+      </div>
+      <router-link :to="{name: 'config'}">
+        <div>
+          <i class="icon icon-config"></i>
+          <p class=""> Ajustes </p>
+        </div>
+      </router-link>
+    </nav>
+  </footer>
 </template>
 
 <script setup>
   import { ref } from 'vue'
   import { RouterLink, RouterView } from 'vue-router'
   import { useWordsStore } from '@/stores/words'
+  import { useSysStore } from '@/stores/system'
   import loading from '@/components/Load.vue'
   import add from '@/components/Add.vue'
   import stageStatus from '@/components/StageThread.vue'
@@ -35,6 +45,12 @@
   const statusThread = ref('')
   const w1 = new URL('/workers/updateWorker.js', import.meta.url)
   const worker = new Worker(w1)
+
+  const wordsStore = useWordsStore()
+  wordsStore.load()
+
+  const sysStore = useSysStore()
+  sysStore.load()
 
   worker.addEventListener('message', ({data}) => {
     showStage.value = data.show
@@ -48,29 +64,22 @@
 </script>
 
 <style scoped>
-header {
-  @apply flex items-center justify-around bg-slate-900/75 fixed z-20 top-0 left-0 w-full text-sm text-white px-5 md:px-10 py-3 border-b border-slate-900/[0.1];
-  backdrop-filter: blur(5px);
-}
-  header a {
-    @apply w-1/3 md:w-1/4 rounded-full text-center py-2 text-xs font-bold bg-sky-400/[0.1] cursor-pointer;
+   nav {
+    @apply flex flex-none lg:flex-col w-full lg:w-[100px] fixed bottom-0 lg:top-0 left-0 items-center justify-evenly bg-[#F5E9FE] z-20 p-2 rounded-t-xl lg:rounded-t-none lg:rounded-r-xl overflow-hidden;
   }
-   header p {
-    @apply text-sky-400;
+     nav > a,
+     nav > div {
+      @apply flex flex-1 flex-col justify-center items-center cursor-pointer;
+    }
+     nav > a > div,
+     nav > div > div{
+      @apply flex flex-col items-center justify-center w-fit mx-auto p-2 space-y-3 rounded-xl; 
+    }
+     nav a,p,i {
+      @apply flex-1 text-center font-bold text-[#584592];
+    }
+
+  a.router-link-exact-active > div {
+    @apply bg-white hover:bg-none;
   }
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
 </style>

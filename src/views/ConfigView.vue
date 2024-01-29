@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col justify-evenly items-center flex-wrap w-full h-screen p-8">
+  <div class="flex flex-col justify-center items-center flex-wrap w-full h-full p-8">
 
     <div class="flex flex-col items-center">
-      <p class="text-2xl font-bold mb-8"> Palabras </p>
+      <p class="text-2xl font-bold mb-5"> Palabras </p>
       <input type="file" class="hidden" id="file" ref="fileInput" @change="readFil">
       <label for="file" class="file"> Selecciona archivo </label>
 
@@ -14,29 +14,39 @@
       </btnComponent>
     </div>
 
-    <div class="flex flex-col md:flex-row md:space-x-8 items-center">
+    <div class="w-full px-3 py-1 my-5">
+      <div class="mx-auto border-dashed border-2">
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row md:space-x-8 items-center my-5">
       <div class="flex flex-col justify-center items-center md:w-1/2">
-        <p class="text-center text-2xl font-bold mb-8"> Que lado de la tarjeta mostrar </p>
-        <div class="flex flex-col">
+        <p class="text-center text-2xl font-bold"> Que lado de la tarjeta mostrar </p>
+        <div class="flex flex-col my-3">
           <btnComponent color="gray">
             Vista frontal
           </btnComponent>
           <btnComponent color="gray">
             Vista posterior
           </btnComponent>
-          <btnComponent color="gray" @click="addWord">
-            Ambas
-          </btnComponent>
+        </div>
+      </div>
+
+      <div class="md:hidden w-full px-3 py-1 my-5">
+        <div class="mx-auto border-dashed border-2">
         </div>
       </div>
 
       <div class="flex flex-col justify-center items-center md:w-1/2">
-        <p class="text-center text-2xl font-bold mb-8"> Categorias </p>
+        <p class="text-center text-2xl font-bold mb-4"> Categorias </p>
         <div class="flex flex-col">
           <btnComponent v-for="category in btnCategories"
             :color="category.bg"
             @click="toggleShow(category.label)">
               {{ category.label }}
+              <template #icon>
+                <i class="icon icon-cross text-red-400" @click="deleteCategory(category.label)"></i>
+              </template>
           </btnComponent>
         </div>
       </div>
@@ -89,13 +99,11 @@
   }
 
   function toggleShow(category){
-    if ( showCategories.value.includes(category) ){
-      const index = showCategories.value.indexOf(category)
-      showCategories.value.splice(index, 1)
-    }
-    else {
-      showCategories.value.push(category)
-    }
+    wordsStore.toggleShowCategory(category)
+  }
+
+  function deleteCategory(category){
+    wordsStore.deleteCategory(category)
   }
 
   function readFil (){
@@ -106,11 +114,14 @@
       const content = e.target.result
       const lines = content.split('\n')
 
+      wordsStore.clear()
+
       for (let i = 1; i < lines.length-1; i++) {
         const line = lines[i]
         const data = line.split(',')
         addWord(data)
       }
+      wordsStore.changeWords()
     }
 
     reader.readAsText(file);
@@ -119,6 +130,6 @@
 
 <style scoped>
   .file {
-    @apply border-b-2 border-white px-5 text-white cursor-pointer;
+    @apply border-b-2 border-gray-800 px-5 cursor-pointer;
   }
 </style>

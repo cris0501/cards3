@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-p {
-  @apply text-white;
-}
-
 @font-face {
   font-family: 'cards-icon';
   src:  url('./fonts/cards-icon.ttf?fps7m1') format('truetype'),
@@ -24,7 +20,6 @@ p {
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  color: #FFF;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;

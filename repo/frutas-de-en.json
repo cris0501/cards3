@@ -1,0 +1,15 @@
+{
+  "category": "Frutas DE-EN",
+  "cards": [
+    { "side_1": "Apfel",        "img_1": "", "sound_1": "", "info_1": "das Apfel",        "side_2": "Apple",       "img_2": "", "sound_2": "", "info_2": "" },
+    { "side_1": "Banane",       "img_1": "", "sound_1": "", "info_1": "die Banane",       "side_2": "Banana",      "img_2": "", "sound_2": "", "info_2": "" },
+    { "side_1": "Orange",       "img_1": "", "sound_1": "", "info_1": "die Orange",       "side_2": "Orange",      "img_2": "", "sound_2": "", "info_2": "" },
+    { "side_1": "Erdbeere",     "img_1": "", "sound_1": "", "info_1": "die Erdbeere",     "side_2": "Strawberry",  "img_2": "", "sound_2": "", "info_2": "" },
+    { "side_1": "Kirsche",      "img_1": "", "sound_1": "", "info_1": "die Kirsche",      "side_2": "Cherry",      "img_2": "", "sound_2": "", "info_2": "" },
+    { "side_1": "Trauben",      "img_1": "", "sound_1": "", "info_1": "die Trauben",      "side_2": "Grapes",      "img_2": "", "sound_2": "", "info_2": "" },
+    { "side_1": "Pfirsich",     "img_1": "", "sound_1": "", "info_1": "der Pfirsich",     "side_2": "Peach",       "img_2": "", "sound_2": "", "info_2": "" },
+    { "side_1": "Birne",        "img_1": "", "sound_1": "", "info_1": "die Birne",        "side_2": "Pear",        "img_2": "", "sound_2": "", "info_2": "" },
+    { "side_1": "Ananas",       "img_1": "", "sound_1": "", "info_1": "die Ananas",       "side_2": "Pineapple",   "img_2": "", "sound_2": "", "info_2": "" },
+    { "side_1": "Wassermelone", "img_1": "", "sound_1": "", "info_1": "die Wassermelone", "side_2": "Watermelon",  "img_2": "", "sound_2": "", "info_2": "" }
+  ]
+}

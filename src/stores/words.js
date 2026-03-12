@@ -1,6 +1,33 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
+const TUTORIAL_CARDS = [
+  {
+    side_1: 'Toca la tarjeta',
+    img_1: '',
+    sound_1: '',
+    info_1: 'Cara frontal de la tarjeta',
+    side_2: '¡Se voltea!',
+    img_2: '',
+    sound_2: '',
+    info_2: 'Cara trasera de la tarjeta',
+    index: 0,
+    category: 'Tutorial',
+  },
+  {
+    side_1: 'Usa el menú ☰',
+    img_1: '',
+    sound_1: '',
+    info_1: 'Puedes agregar tus propias tarjetas',
+    side_2: '¡Empieza a aprender!',
+    img_2: '',
+    sound_2: '',
+    info_2: 'Importa un CSV o crea tarjetas desde Ajustes',
+    index: 1,
+    category: 'Tutorial',
+  },
+]
+
 export const useWordsStore = defineStore('words', () => {
   const side = ref('front'); //Side show
   const categories = ref({}); // cat: [{word}, {word}]
@@ -78,11 +105,21 @@ export const useWordsStore = defineStore('words', () => {
   }
 
   function load(){
-    showWords.value = localStorage.showWords ? JSON.parse(localStorage.getItem('showWords')) : []
-    words.value = localStorage.words ? JSON.parse(localStorage.getItem('words')) : []
+    const hasData = localStorage.words && JSON.parse(localStorage.getItem('words')).length > 0
 
-    showCategories.value = localStorage.showCategories ? JSON.parse(localStorage.getItem('showCategories')) : []
-    categories.value = localStorage.categories ? JSON.parse(localStorage.getItem('categories')) : {}
+    if (!hasData) {
+      categories.value = { Tutorial: [...TUTORIAL_CARDS] }
+      words.value = [...TUTORIAL_CARDS]
+      showCategories.value = ['Tutorial']
+      showWords.value = [...TUTORIAL_CARDS]
+      save()
+      return
+    }
+
+    showWords.value = JSON.parse(localStorage.getItem('showWords'))
+    words.value = JSON.parse(localStorage.getItem('words'))
+    showCategories.value = JSON.parse(localStorage.getItem('showCategories'))
+    categories.value = JSON.parse(localStorage.getItem('categories'))
   }
 
   function clear (){

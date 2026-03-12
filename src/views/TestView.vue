@@ -6,21 +6,40 @@
       <p> <i class="text-yellow-500 icon icon-minus"></i> {{ record }} </p>
     </div>
 
-    <p class="font-bold text-xl mb-8"> ¿Que se muestra en la imagen? </p>
+    <p class="font-bold text-xl mb-8">{{ currentType?.label }}</p>
 
-    <div class="w-5/6 px-3 py-1">
-      <div class="mx-auto border-dashed border-2">
-      </div>
+    <div class="w-5/6 px-3 py-1 mb-4">
+      <div class="mx-auto border-dashed border-2"></div>
     </div>
 
-    <div class="flex flex-col items-center max-h-[25%] my-4">
-      <img :src="showWords[word].img_2" alt="Imagen" class="max-h-[75%]" draggable="false" />
-      <!--<p class="font-bold text-lg my-4"> {{ showWords[word].side_2 }} </p>-->
+    <div class="flex flex-col items-center my-4 min-h-[80px] justify-center">
+      <img v-if="currentType?.stimulusType === 'img'"
+        :src="currentWord?.[currentType.stimulusField]"
+        class="max-h-[150px]" draggable="false" />
+      <p v-else-if="currentType?.stimulusType === 'text'"
+        class="font-bold text-3xl text-center px-4">
+        {{ currentWord?.[currentType.stimulusField] }}
+      </p>
+      <audio v-else-if="currentType?.stimulusType === 'audio'"
+        :src="currentWord?.[currentType.stimulusField]"
+        controls></audio>
     </div>
-    <div class="options" ref="opt">
-      <btn color="blue" class="flex-1" v-for="(op,ind) in options" :key="'btn-op-'+ind" @click="validate(op.value, $event)">
-        {{ op.text }}
+
+    <div v-if="currentType?.answerType === 'text'" class="options" ref="opt">
+      <btn color="blue" class="flex-1"
+        v-for="(op, ind) in options" :key="'btn-op-'+ind"
+        @click="validate(op, $event)">
+        {{ op.word[currentType.answerField] }}
       </btn>
+    </div>
+
+    <div v-else-if="currentType?.answerType === 'img'" class="img-options">
+      <button v-for="(op, ind) in options" :key="'img-op-'+ind"
+        class="img-option border-4 rounded-lg overflow-hidden transition-colors"
+        :class="imgOptionClass(op, ind)"
+        @click="validateImg(op, ind)">
+        <img :src="op.word[currentType.answerField]" class="w-full h-full object-cover" draggable="false" />
+      </button>
     </div>
   </div>
 </template>
@@ -34,64 +53,109 @@
 
   const wordsStore = useWordsStore()
   const { showWords } = storeToRefs(wordsStore)
-
   const sysStore = useSysStore()
   const { points, record } = storeToRefs(sysStore)
 
-  const word = ref(0) // Index of current word
-  const options = ref([]) // Value to options
-  const indexes = ref([]) // Index to ignore
-  const opt = ref(null)
+  const QUESTION_TYPES = [
+    {
+      id: 'img-text',
+      label: '¿Qué se muestra en la imagen?',
+      stimulusType: 'img',
+      stimulusField: 'img_2',
+      answerType: 'text',
+      answerField: 'side_1',
+      filter: (w) => w.img_2?.trim(),
+    },
+    {
+      id: 'text-text',
+      label: '¿Cuál es la traducción?',
+      stimulusType: 'text',
+      stimulusField: 'side_1',
+      answerType: 'text',
+      answerField: 'side_2',
+      filter: (w) => w.side_1?.trim() && w.side_2?.trim(),
+    },
+    {
+      id: 'text-img',
+      label: '¿Qué imagen corresponde?',
+      stimulusType: 'text',
+      stimulusField: 'side_1',
+      answerType: 'img',
+      answerField: 'img_2',
+      filter: (w) => w.side_1?.trim() && w.img_2?.trim(),
+    },
+    {
+      id: 'audio-text',
+      label: '¿Qué escuchas?',
+      stimulusType: 'audio',
+      stimulusField: 'sound_1',
+      answerType: 'text',
+      answerField: 'side_2',
+      filter: (w) => w.sound_1?.trim() && w.side_2?.trim(),
+    },
+  ]
 
-  function renew (){
-    if (opt.value){
-      Array.from(opt.value.children).forEach( div => {
-        div.classList.remove('bg-green-500')
-        div.classList.remove('bg-red-500')
+  const currentType = ref(null)
+  const currentWord = ref(null)
+  const options = ref([])
+  const opt = ref(null)
+  const answeredIndex = ref(null)
+
+  function renew() {
+    if (opt.value) {
+      Array.from(opt.value.children).forEach(div => {
+        div.classList.remove('bg-green-500', 'bg-red-500')
         div.classList.add('bg-blue-500')
       })
     }
+    answeredIndex.value = null
 
-    options.value = []
-    indexes.value = []
+    const validTypes = QUESTION_TYPES.filter(type =>
+      showWords.value.filter(type.filter).length >= 1
+    )
+    if (validTypes.length === 0) return
 
-    word.value = Math.floor(Math.random() * showWords.value.length)
-    options.value.push({
-      text: showWords.value[word.value].side_2,
-      value: word.value
-    })
-    indexes.value.push(word.value)
+    currentType.value = validTypes[Math.floor(Math.random() * validTypes.length)]
 
-    while (options.value.length < 4 && indexes.value.length < showWords.value.length){
-      let index = null
-      while (true){
-         index = Math.floor(Math.random() * showWords.value.length)
-         if (!indexes.value.includes(index)) break
-      }
-      indexes.value.push(index)
-      options.value.push({
-        text: showWords.value[index].side_2,
-        value: index
-      })
+    const pool = showWords.value.filter(currentType.value.filter)
+    currentWord.value = pool[Math.floor(Math.random() * pool.length)]
+
+    const picked = [currentWord.value]
+    const shuffled = [...pool].sort(() => Math.random() - 0.5)
+    for (const w of shuffled) {
+      if (picked.length >= 4) break
+      if (w !== currentWord.value) picked.push(w)
     }
 
-    options.value = options.value.sort( () => Math.random() - 0.5)
+    options.value = picked
+      .sort(() => Math.random() - 0.5)
+      .map(w => ({ word: w, correct: w === currentWord.value }))
   }
 
-  function validate (index, event){
+  function validate(op, event) {
     event.currentTarget.classList.remove('bg-blue-500')
-    if (index == word.value){
+    if (op.correct) {
       event.currentTarget.classList.add('bg-green-500')
       sysStore.addPoint(true)
-    }
-    else {
+    } else {
       event.currentTarget.classList.add('bg-red-500')
       sysStore.addPoint(false)
     }
+    setTimeout(() => renew(), 1500)
+  }
 
-    setTimeout( () => {
-      renew()
-    }, 1500)
+  function validateImg(op, ind) {
+    if (answeredIndex.value !== null) return
+    answeredIndex.value = ind
+    sysStore.addPoint(op.correct)
+    setTimeout(() => renew(), 1500)
+  }
+
+  function imgOptionClass(op, ind) {
+    if (answeredIndex.value === null) return 'border-transparent'
+    if (op.correct) return 'border-green-500'
+    if (ind === answeredIndex.value) return 'border-red-500'
+    return 'border-transparent'
   }
 
   renew()
@@ -101,5 +165,11 @@
 <style scoped>
   .options {
     @apply flex flex-col lg:flex-row justify-evenly w-2/3 mx-auto lg:space-x-4;
+  }
+  .img-options {
+    @apply grid grid-cols-2 gap-3 w-2/3 mx-auto;
+  }
+  .img-option {
+    @apply aspect-square w-full;
   }
 </style>

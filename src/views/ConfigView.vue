@@ -41,8 +41,7 @@
         <p class="text-center text-2xl font-bold mb-4"> Categorias </p>
         <div class="flex flex-col">
           <btnComponent v-for="category in btnCategories"
-            :color="category.bg"
-            @click="toggleShow(category.label)">
+            :color="category.bg">
               {{ category.label }}
               <template #icon>
                 <i class="icon icon-cross text-red-400" @click="deleteCategory(category.label)"></i>
@@ -56,32 +55,18 @@
 </template>
 
 <script setup>
-  import { ref, computed, watch } from 'vue'
+  import { ref, computed } from 'vue'
   import { storeToRefs } from 'pinia'
   import { useWordsStore } from '@/stores/words'
   import btnComponent from '@/components/Button.vue'
 
   const wordsStore = useWordsStore() // use store
-  const { categories, showCategories } = storeToRefs(wordsStore)
+  const { categories } = storeToRefs(wordsStore)
   const fileInput = ref(null)
 
-  const btnCategories = computed( () => {
-    let btns = []
-    Object.keys(categories.value).map( (item) => {
-      if( showCategories.value.includes(item) ){
-        btns.push ({
-          label: item,
-          bg: 'green'
-        })
-      } else {
-        btns.push ({
-          label: item,
-          bg: 'gray'
-        })
-      }
-    })
-    return btns
-  })
+  const btnCategories = computed( () =>
+    Object.keys(categories.value).map(label => ({ label, bg: 'green' }))
+  )
 
   function addWord (_word){
     const aux = {
@@ -96,10 +81,6 @@
       category: _word[8]
     };
     wordsStore.addWord(aux)
-  }
-
-  function toggleShow(category){
-    wordsStore.toggleShowCategory(category)
   }
 
   function deleteCategory(category){

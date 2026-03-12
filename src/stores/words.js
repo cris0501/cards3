@@ -38,6 +38,7 @@ export const useWordsStore = defineStore('words', () => {
   function addCategory (_new){ // object list of categories
     if( Object.keys(categories.value).includes(_new) ) return false
     categories.value[_new] = []
+    showCategories.value.push(_new)
   }
 
   function deleteCategory (category){
@@ -61,7 +62,7 @@ export const useWordsStore = defineStore('words', () => {
       img_2: (_new.img_2)? _new.img_2 : '',
       sound_2: (_new.sound_2)? _new.sound_2 : '',
       info_2: (_new.info_2)? _new.info_2 : '',
-      index: category.length,
+      index: categories.value[category].length,
       category: (_new.category)? _new.category : 'Otras',
     }
 

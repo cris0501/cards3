@@ -12,10 +12,14 @@
   <div class="w-full">
     <p class="text-lg font-bold px-8 mt-4"> Ultimo visto </p>
     <div class="flex items-center w-full lg:w-5/6 max-h-[75vh] overflow-y-hidden overflow-x-auto mx-auto snap-proximity snap-x py-2 mb-4 px-8 space-x-4 scroll">
-      <card class="card"
-        v-for="(word, ind) in showWords"
-        :bg="colors[ind%3]"
-        :word="showWords[ind]" />
+      <template v-if="showWords.length > 0">
+        <template v-for="(word, ind) in showWords" :key="ind">
+          <card v-if="word" class="card"
+            :bg="colors[ind%3]"
+            :word="word" />
+        </template>
+      </template>
+      <p v-else class="text-gray-400 mx-auto py-8">Sin tarjetas. Carga una colección desde Repo o agrega tarjetas.</p>
     </div>
   </div>
 

@@ -11,12 +11,14 @@
         <p class="font-bold text-lg">{{ col.name }}</p>
         <p class="text-sm text-gray-500">{{ col.description }}</p>
         <div class="flex space-x-2 pt-1">
-          <button
+          <button v-if="!isLoaded(col)"
             class="px-4 py-1 rounded-full text-sm bg-rose-200 text-rose-700 font-semibold"
             @click="loadCollection(col)">
             + Agregar
           </button>
-          <span v-if="loaded[col.id]" class="text-green-600 text-sm self-center">¡Cargado!</span>
+          <span v-else class="text-green-600 text-sm self-center font-semibold">
+            ✓ Ya cargado — bórralo desde Ajustes
+          </span>
         </div>
       </div>
     </div>
@@ -25,12 +27,13 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
 import { useWordsStore } from '@/stores/words'
 
 const wordsStore = useWordsStore()
+const { categories } = storeToRefs(wordsStore)
 const collections = ref([])
 const loading = ref(true)
-const loaded = ref({})
 
 onMounted(async () => {
   const res = await fetch('/repo/index.json')
@@ -38,13 +41,15 @@ onMounted(async () => {
   loading.value = false
 })
 
+function isLoaded(col) {
+  return Object.keys(categories.value).includes(col.category)
+}
+
 async function loadCollection(col) {
   const res = await fetch(`/repo/${col.file}`)
   const data = await res.json()
   data.cards.forEach((card) => {
     wordsStore.addWord({ ...card, category: data.category })
   })
-  wordsStore.toggleShowCategory(data.category)
-  loaded.value[col.id] = true
 }
 </script>

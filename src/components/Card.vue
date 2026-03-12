@@ -27,7 +27,7 @@
   const card = ref(null)
 
   function deleteWord (){
-    wordsStore.deleteWord(props.word.category, props.word.category.index)
+    wordsStore.deleteWord(props.word.category, props.word.index)
   }
 
   function toggleCard (event){

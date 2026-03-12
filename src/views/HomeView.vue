@@ -47,10 +47,10 @@
     </div>
 
     <div class="option bg-rose-200">
-      <a href="#">
+      <router-link :to="{name: 'repo'}">
         <i class="text-rose-600 icon icon-list"></i>
         <p class="text-rose-600"> Repo </p>
-      </a>
+      </router-link>
     </div>
   </div>
 </template>

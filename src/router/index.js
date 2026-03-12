@@ -29,6 +29,11 @@ const router = createRouter({
       name: 'config',
       component: () => import('../views/ConfigView.vue')
     },
+    {
+      path: '/repo',
+      name: 'repo',
+      component: () => import('../views/RepoView.vue')
+    },
   ]
 })
 

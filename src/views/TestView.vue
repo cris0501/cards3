@@ -23,6 +23,9 @@
       <audio v-else-if="currentType?.stimulusType === 'audio'"
         :src="currentWord?.[currentType.stimulusField]"
         controls></audio>
+      <p v-if="currentWord?.info_1" class="text-sm text-center opacity-50 mt-2 px-4">
+        {{ currentWord.info_1 }}
+      </p>
     </div>
 
     <div v-if="currentType?.answerType === 'text'" class="options" ref="opt">

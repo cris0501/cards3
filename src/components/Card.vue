@@ -6,10 +6,12 @@
         <div class="front">
           <img :src="word.img_1" class="w-auto max-h-[50%] mx-auto mb-5" draggable="false">
           <p class="font-bold text-center text-3lx"> {{ word.side_1 }} </p>
+          <p v-if="word.info_1" class="text-sm text-center opacity-50 mt-2 px-4"> {{ word.info_1 }} </p>
         </div>
         <div class="back">
           <img :src="word.img_2" class="w-auto max-h-[50%] mx-auto mb-5" draggable="false">
           <p class="font-bold text-center text-3lx"> {{ word.side_2 }} </p>
+          <p v-if="word.info_2" class="text-sm text-center opacity-50 mt-2 px-4"> {{ word.info_2 }} </p>
         </div>
       </div>
     </div>

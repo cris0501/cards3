@@ -36,7 +36,7 @@ const collections = ref([])
 const loading = ref(true)
 
 onMounted(async () => {
-  const res = await fetch('/repo/index.json')
+  const res = await fetch(`${import.meta.env.BASE_URL}repo/index.json`)
   collections.value = await res.json()
   loading.value = false
 })
@@ -46,7 +46,7 @@ function isLoaded(col) {
 }
 
 async function loadCollection(col) {
-  const res = await fetch(`/repo/${col.file}`)
+  const res = await fetch(`${import.meta.env.BASE_URL}repo/${col.file}`)
   const data = await res.json()
   data.cards.forEach((card) => {
     wordsStore.addWord({ ...card, category: data.category })

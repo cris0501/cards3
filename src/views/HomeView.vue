@@ -29,33 +29,25 @@
   </div>
 
   <div class="flex justify-evenly p-5">
-    <div class="option bg-emerald-200">
-      <router-link :to="{name: 'one'}">
-        <i class="text-emerald-600 icon icon-stack"></i>
-        <p class="text-emerald-600"> Tarjetas </p>
-      </router-link>
-    </div>
+    <router-link :to="{name: 'one'}" class="option bg-emerald-200">
+      <i class="text-emerald-600 icon icon-stack"></i>
+      <p class="text-emerald-600"> Tarjetas </p>
+    </router-link>
 
-    <div class="option bg-orange-200">
-      <router-link :to="{name: 'list'}">
-        <i class="text-orange-600 icon icon-list"></i>
-        <p class="text-orange-600"> Listado </p>
-      </router-link>
-    </div>
+    <router-link :to="{name: 'list'}" class="option bg-orange-200">
+      <i class="text-orange-600 icon icon-list"></i>
+      <p class="text-orange-600"> Listado </p>
+    </router-link>
 
-    <div class="option bg-fuchsia-200">
-      <router-link :to="{name: 'simpleTest'}">
-        <i class="text-fuchsia-600 icon icon-pencil"></i>
-        <p class="text-fuchsia-600"> Practica </p>
-      </router-link>
-    </div>
+    <router-link :to="{name: 'simpleTest'}" class="option bg-fuchsia-200">
+      <i class="text-fuchsia-600 icon icon-pencil"></i>
+      <p class="text-fuchsia-600"> Practica </p>
+    </router-link>
 
-    <div class="option bg-rose-200">
-      <router-link :to="{name: 'repo'}">
-        <i class="text-rose-600 icon icon-list"></i>
-        <p class="text-rose-600"> Repo </p>
-      </router-link>
-    </div>
+    <router-link :to="{name: 'repo'}" class="option bg-rose-200">
+      <i class="text-rose-600 icon icon-list"></i>
+      <p class="text-rose-600"> Repo </p>
+    </router-link>
   </div>
 </template>
 
@@ -78,14 +70,11 @@
     flex: 0 0 auto;
   }
   .option {
-    @apply flex items-center justify-center rounded-full w-[75px] lg:w-[100px] h-[75px] lg:h-[100px];
+    @apply flex flex-col justify-center items-center rounded-full w-[75px] lg:w-[100px] h-[75px] lg:h-[100px] cursor-pointer;
   }
-    .option a {
-      @apply flex flex-col justify-center items-center;
-    }
     .option p,
     .option i {
-      @apply flex flex-col items-center justify-center rounded-lg text-center cursor-pointer;
+      @apply flex flex-col items-center justify-center rounded-lg text-center;
     }
     .option p {
       @apply block text-xs lg:text-sm

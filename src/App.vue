@@ -94,7 +94,7 @@
 
 <style scoped>
    nav {
-    @apply flex flex-none lg:flex-col w-full lg:w-[100px] fixed bottom-0 lg:top-0 left-0 items-center justify-evenly bg-[#F5E9FE] z-20 p-2 rounded-t-xl lg:rounded-t-none lg:rounded-r-xl overflow-hidden;
+    @apply flex flex-none lg:flex-col w-full lg:w-[100px] fixed bottom-0 lg:top-0 left-0 items-center justify-evenly bg-blue-200 z-20 p-2 rounded-t-xl lg:rounded-t-none lg:rounded-r-xl overflow-hidden;
   }
      nav > a,
      nav > div {
@@ -105,8 +105,8 @@
       @apply flex flex-col items-center justify-center w-fit mx-auto p-2 space-y-3 rounded-xl; 
     }
      nav a,p,i {
-      @apply flex-1 text-center font-bold text-[#584592];
-    }
+       @apply flex-1 text-center font-bold text-blue-800;
+     }
 
   a.router-link-exact-active > div {
     @apply bg-white hover:bg-none;

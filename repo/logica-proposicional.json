@@ -1,0 +1,185 @@
+{
+  "category": "Logica Proposicional",
+  "cards": [
+    {
+      "side_1": "¿Que es una proposicion?",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "En logica clasica",
+      "side_2": "Una expresion declarativa que puede ser verdadera o falsa",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Conjuncion",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "p ∧ q",
+      "side_2": "Solo es verdadera cuando p y q son verdaderas",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "Cualquier otro caso es falso"
+    },
+    {
+      "side_1": "Caso que hace falsa a p ∧ q",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "Basta que una de las proposiciones sea falsa",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Disyuncion",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "p ∨ q",
+      "side_2": "Es verdadera si al menos una proposicion es verdadera",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "Solo es falsa cuando p y q son falsas"
+    },
+    {
+      "side_1": "Caso que hace falsa a p ∨ q",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "Cuando p = F y q = F",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Negacion",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "¬p",
+      "side_2": "Invierte el valor de verdad de p",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "Si p es V entonces ¬p es F"
+    },
+    {
+      "side_1": "Implicacion",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "p → q",
+      "side_2": "Solo es falsa cuando p es verdadera y q es falsa",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Interpretacion de p → q",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "Si ocurre p entonces ocurre q",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Equivalencia de la implicacion",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "p → q equivale a ¬p ∨ q",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Bicondicional",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "p ↔ q",
+      "side_2": "Es verdadera cuando p y q tienen el mismo valor de verdad",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Equivalencia del bicondicional",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "(p → q) ∧ (q → p)",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Forma normal disyuntiva",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "FND",
+      "side_2": "Disyuncion de conjunciones",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "Construida con las filas verdaderas de la tabla"
+    },
+    {
+      "side_1": "Forma normal conjuntiva",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "FNC",
+      "side_2": "Conjuncion de disyunciones",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "Construida con las filas falsas de la tabla"
+    },
+    {
+      "side_1": "Modus Ponens",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "p → q, p ⟹ q",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "Si p implica q y p es verdadera entonces q"
+    },
+    {
+      "side_1": "Modus Tollens",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "p → q, ¬q ⟹ ¬p",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Silogismo hipotetico",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "p → q, q → r ⟹ p → r",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Silogismo disyuntivo",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "p ∨ q, ¬p ⟹ q",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Cuando un argumento es valido",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "Cuando no existe caso donde las premisas sean verdaderas y la conclusion falsa",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "category": "Topologia Basica",
+  "cards": [
+    {
+      "side_1": "Espacio metrico",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "Se denota (X,d)",
+      "side_2": "Un conjunto X con una funcion distancia d : X×X → R",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "La funcion debe satisfacer los axiomas de metrica"
+    },
+    {
+      "side_1": "Axioma identidad de una metrica",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "Tambien llamado separacion",
+      "side_2": "d(x,y) = 0 si y solo si x = y",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Axioma simetria de una metrica",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "d(x,y) = d(y,x)",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "La distancia no depende del orden"
+    },
+    {
+      "side_1": "Desigualdad triangular",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "Propiedad fundamental",
+      "side_2": "d(x,z) ≤ d(x,y) + d(y,z)",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "La distancia directa nunca excede una ruta intermedia"
+    },
+    {
+      "side_1": "Positividad de una metrica",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "d(x,y) ≥ 0",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "Las distancias nunca son negativas"
+    },
+    {
+      "side_1": "Norma",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "En espacios vectoriales",
+      "side_2": "Funcion que asigna a cada vector un numero no negativo",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "Generaliza la longitud de un vector"
+    },
+    {
+      "side_1": "Relacion entre norma y metrica",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "",
+      "side_2": "d(x,y) = ||x − y||",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "Toda norma induce una metrica"
+    },
+    {
+      "side_1": "Bola abierta",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "Centro x y radio r",
+      "side_2": "B(x,r) = { y ∈ X | d(x,y) < r }",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "Contiene todos los puntos a distancia menor que r"
+    },
+    {
+      "side_1": "Conjunto abierto",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "Definicion en espacio metrico",
+      "side_2": "Un conjunto donde cada punto tiene una bola abierta contenida en el",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Interior de un conjunto",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "Se denota int(A)",
+      "side_2": "Conjunto de puntos que poseen una bola abierta contenida en A",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": "Son los puntos completamente dentro del conjunto"
+    },
+    {
+      "side_1": "Punto de adherencia",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "Tambien llamado punto limite en algunos contextos",
+      "side_2": "Todo punto cuya bola abierta intersecta al conjunto",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Clausura de un conjunto",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "Se denota Ā",
+      "side_2": "Union del conjunto con todos sus puntos de adherencia",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    },
+    {
+      "side_1": "Frontera de un conjunto",
+      "img_1": "",
+      "sound_1": "",
+      "info_1": "Tambien llamada borde",
+      "side_2": "Puntos donde toda bola abierta intersecta A y su complemento",
+      "img_2": "",
+      "sound_2": "",
+      "info_2": ""
+    }
+  ]
+}

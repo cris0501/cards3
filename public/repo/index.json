@@ -5,5 +5,12 @@
     "description": "Vocabulario básico de frutas en alemán con su equivalente en inglés.",
     "file": "frutas-de-en.json",
     "category": "Frutas DE-EN"
+  },
+  {
+    "id": "logica-proposicional",
+    "name": "Lógica Proposicional",
+    "description": "Introducción básica a conectores y semantica.",
+    "file": "logica-proposicional.json",
+    "category": "Logica Proposicional"
   }
 ]

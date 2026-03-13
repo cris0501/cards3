@@ -26,7 +26,7 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        'view': 'calc(100vh - 84px)'
+        'view': 'calc(100dvh - 84px)'
       }
     },
   },

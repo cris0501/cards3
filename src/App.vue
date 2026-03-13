@@ -3,7 +3,7 @@
   <stageStatus :status="statusThread" v-show="showStage"/>
   <add v-show="showAdd" @close="toggleShowAdd"/>
 
-  <div class="flex flex-col w-full min-h-[100vh] pb-[84px] lg:pb-0 pl-0 lg:pl-[100px]">
+  <div class="flex flex-col w-full min-h-[100dvh] pb-[84px] lg:pb-0 pl-0 lg:pl-[100px]">
     <RouterView />
   </div>
 

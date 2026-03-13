@@ -9,7 +9,7 @@
     </div>
 
     <div class="flex flex-col justify-center items-center w-5/6 md:w-2/3 h-full mx-auto space-y-5">
-      <cardComponent class="w-full h-[75vh] snap-center" :word="showWords[index]" />
+      <cardComponent class="w-full h-[75dvh] snap-center" :word="showWords[index]" />
     </div>
   </div>
 </template>

@@ -34,6 +34,11 @@ const router = createRouter({
       name: 'repo',
       component: () => import('../views/RepoView.vue')
     },
+    {
+      path: '/import',
+      name: 'import',
+      component: () => import('../views/ImportView.vue')
+    },
   ]
 })
 

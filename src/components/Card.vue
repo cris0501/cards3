@@ -5,13 +5,13 @@
       <div class="card relative" :class="(props.bg) ? bg:'bg-blue-600'" ref="card" @click="toggleCard">
         <div class="front">
           <img v-if="img1Src" :src="img1Src" class="w-auto max-h-[50%] mx-auto mb-5" draggable="false">
-          <p class="font-bold text-center text-3lx"> {{ word.side_1 }} </p>
-          <p v-if="word.info_1" class="text-sm text-center opacity-50 mt-2 px-4"> {{ word.info_1 }} </p>
+          <p class="font-bold text-center text-3lx text-white"> {{ word.side_1 }} </p>
+          <p v-if="word.info_1" class="text-sm text-center opacity-50 mt-2 px-4 text-white"> {{ word.info_1 }} </p>
         </div>
         <div class="back">
           <img v-if="img2Src" :src="img2Src" class="w-auto max-h-[50%] mx-auto mb-5" draggable="false">
-          <p class="font-bold text-center text-3lx"> {{ word.side_2 }} </p>
-          <p v-if="word.info_2" class="text-sm text-center opacity-50 mt-2 px-4"> {{ word.info_2 }} </p>
+          <p class="font-bold text-center text-3lx text-white"> {{ word.side_2 }} </p>
+          <p v-if="word.info_2" class="text-sm text-center opacity-50 mt-2 px-4 text-white"> {{ word.info_2 }} </p>
         </div>
       </div>
     </div>

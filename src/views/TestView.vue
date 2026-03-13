@@ -1,15 +1,15 @@
 <template>
   <div class="flex flex-col items-center justify-center self-center w-full h-view relative">
     <div class="flex items-center justify-evenly w-full fixed bottom-[90px]">
-      <p> <i class="text-green-500 icon icon-ok"></i> {{ points[0] }} </p>
-      <p> <i class="text-blue-500 icon icon-info"></i> {{ points[1] }} </p>
-      <p> <i class="text-yellow-500 icon icon-minus"></i> {{ record }} </p>
+      <p class="dark:text-slate-200"> <i class="text-green-500 icon icon-ok"></i> {{ points[0] }} </p>
+      <p class="dark:text-slate-200"> <i class="text-blue-500 icon icon-info"></i> {{ points[1] }} </p>
+      <p class="dark:text-slate-200"> <i class="text-yellow-500 icon icon-minus"></i> {{ record }} </p>
     </div>
 
-    <p class="font-bold text-xl mb-8">{{ currentType?.label }}</p>
+    <p class="font-bold text-xl mb-8 dark:text-white">{{ currentType?.label }}</p>
 
     <div class="w-5/6 px-3 py-1 mb-4">
-      <div class="mx-auto border-dashed border-2"></div>
+      <div class="mx-auto border-dashed border-2 dark:border-slate-600"></div>
     </div>
 
     <div class="flex flex-col items-center my-4 min-h-[80px] justify-center">
@@ -17,13 +17,13 @@
         :src="currentWord?.[currentType.stimulusField]"
         class="max-h-[150px]" draggable="false" />
       <p v-else-if="currentType?.stimulusType === 'text'"
-        class="font-bold text-3xl text-center px-4">
+        class="font-bold text-3xl text-center px-4 dark:text-white">
         {{ currentWord?.[currentType.stimulusField] }}
       </p>
       <audio v-else-if="currentType?.stimulusType === 'audio'"
         :src="currentWord?.[currentType.stimulusField]"
         controls></audio>
-      <p v-if="currentWord?.info_1" class="text-sm text-center opacity-50 mt-2 px-4">
+      <p v-if="currentWord?.info_1" class="text-sm text-center opacity-50 mt-2 px-4 dark:text-slate-300">
         {{ currentWord.info_1 }}
       </p>
     </div>

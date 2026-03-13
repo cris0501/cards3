@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col p-8">
     <p class="w-full text-2xl font-bold"> Bievenido </p>
-    <p class="fot-bold"> ¿Que vas a aprender hoy? </p>
+    <p class="fot-bold dark:text-slate-300"> ¿Que vas a aprender hoy? </p>
   </div>
 
   <div class="w-full px-3 py-1">
-    <div class="mx-auto border-dashed border-2">
+    <div class="mx-auto border-dashed border-2 dark:border-slate-600">
     </div>
   </div>
 
@@ -19,12 +19,12 @@
             :word="word" />
         </template>
       </template>
-      <p v-else class="text-gray-400 mx-auto py-8">Sin tarjetas. Carga una colección desde Repo o agrega tarjetas.</p>
+      <p v-else class="text-gray-400 dark:text-slate-500 mx-auto py-8">Sin tarjetas. Carga una colección desde Repo o agrega tarjetas.</p>
     </div>
   </div>
 
   <div class="w-full px-3 py-1">
-    <div class="mx-auto border-dashed border-2">
+    <div class="mx-auto border-dashed border-2 dark:border-slate-600">
     </div>
   </div>
 

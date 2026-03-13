@@ -3,9 +3,10 @@ import { defineStore } from 'pinia'
 
 export const useSysStore = defineStore('sys', () => {
   const isLoading = ref(false);
-  const record = ref(0); //Correct
-  const points = ref([0,0]); //Correct,all
-  const loadedFiles = ref([]); // list of loaded files
+  const record = ref(0);
+  const points = ref([0,0]);
+  const loadedFiles = ref([]);
+  const darkMode = ref(false);
   
   function loading(){
     isLoading.value = !isLoading.value;
@@ -23,6 +24,20 @@ export const useSysStore = defineStore('sys', () => {
 
   function load (){
     record.value = parseInt( localStorage.record ? localStorage.getItem('record') : 0 )
+    darkMode.value = localStorage.getItem('darkMode') === 'true'
+    if (darkMode.value) {
+      document.documentElement.classList.add('dark')
+    }
+  }
+
+  function toggleDarkMode (){
+    darkMode.value = !darkMode.value
+    localStorage.setItem('darkMode', darkMode.value)
+    if (darkMode.value) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
   }
 
   return {
@@ -30,7 +45,8 @@ export const useSysStore = defineStore('sys', () => {
     points,
     addPoint,
     load,
-
+    toggleDarkMode,
+    darkMode,
     isLoading,
     loading,
     loadedFiles

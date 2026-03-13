@@ -12,5 +12,12 @@
     "description": "Introducción básica a conectores y semantica.",
     "file": "logica-proposicional.json",
     "category": "Logica Proposicional"
+  },
+  {
+    "id": "topologia-basica",
+    "name": "Topología Básica",
+    "description": "Introducción a la topología.",
+    "file": "topologia-basica.json",
+    "category": "Topologia Basica"
   }
 ]

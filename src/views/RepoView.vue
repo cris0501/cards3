@@ -11,7 +11,7 @@
         <p class="font-bold text-lg">{{ col.name }}</p>
         <p class="text-sm text-gray-500">{{ col.description }}</p>
         <div class="flex space-x-2 pt-1">
-          <button v-if="!isLoaded(col)"
+          <button v-if="!(col.category in wordsStore.categories)"
             class="px-4 py-1 rounded-full text-sm bg-rose-200 text-rose-700 font-semibold"
             @click="loadCollection(col)">
             + Agregar
@@ -27,11 +27,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { storeToRefs } from 'pinia'
 import { useWordsStore } from '@/stores/words'
 
 const wordsStore = useWordsStore()
-const { categories } = storeToRefs(wordsStore)
 const collections = ref([])
 const loading = ref(true)
 
@@ -40,10 +38,6 @@ onMounted(async () => {
   collections.value = await res.json()
   loading.value = false
 })
-
-function isLoaded(col) {
-  return Object.keys(categories.value).includes(col.category)
-}
 
 async function loadCollection(col) {
   const res = await fetch(`${import.meta.env.BASE_URL}repo/${col.file}`)

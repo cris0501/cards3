@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  overscroll-behavior-y: none;
+}
+
 @font-face {
   font-family: 'cards-icon';
   src:  url('./fonts/cards-icon.ttf?fps7m1') format('truetype'),

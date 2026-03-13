@@ -2,6 +2,7 @@
   <loading />
   <stageStatus :status="statusThread" v-show="showStage"/>
   <add v-show="showAdd" @close="toggleShowAdd"/>
+  <div v-show="showExitToast" class="exit-toast">Presiona atrás de nuevo para salir</div>
 
   <div class="flex flex-col w-full min-h-[100dvh] pb-[84px] lg:pb-0 pl-0 lg:pl-[100px]">
     <RouterView />
@@ -32,8 +33,8 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
-  import { RouterLink, RouterView } from 'vue-router'
+  import { ref, onMounted, onUnmounted } from 'vue'
+  import { RouterLink, RouterView, useRoute } from 'vue-router'
   import { useWordsStore } from '@/stores/words'
   import { useSysStore } from '@/stores/system'
   import loading from '@/components/Load.vue'
@@ -43,8 +44,11 @@
   const showAdd = ref(false)
   const showStage = ref(true)
   const statusThread = ref('')
+  const showExitToast = ref(false)
   const w1 = new URL('/workers/updateWorker.js', import.meta.url)
   const worker = new Worker(w1)
+
+  const route = useRoute()
 
   const wordsStore = useWordsStore()
   wordsStore.load()
@@ -61,6 +65,31 @@
   function toggleShowAdd (){
     showAdd.value = !showAdd.value
   }
+
+  let exitTimer = null
+
+  function handlePopState() {
+    if (route.name === 'home') {
+      history.pushState(null, '', location.href)
+      if (showExitToast.value) {
+        clearTimeout(exitTimer)
+        showExitToast.value = false
+        window.close()
+      } else {
+        showExitToast.value = true
+        exitTimer = setTimeout(() => { showExitToast.value = false }, 2000)
+      }
+    }
+  }
+
+  onMounted(() => {
+    history.pushState(null, '', location.href)
+    window.addEventListener('popstate', handlePopState)
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('popstate', handlePopState)
+  })
 </script>
 
 <style scoped>
@@ -81,5 +110,21 @@
 
   a.router-link-exact-active > div {
     @apply bg-white hover:bg-none;
+  }
+</style>
+
+<style>
+  .exit-toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.75);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    z-index: 9999;
+    white-space: nowrap;
   }
 </style>

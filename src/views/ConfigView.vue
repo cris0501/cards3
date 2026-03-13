@@ -50,7 +50,9 @@
         </div>
       </div>
     </div>
-    
+
+    <p class="mt-auto pt-10 text-sm text-gray-400">By C. Ramirez</p>
+
   </div>
 </template>
 

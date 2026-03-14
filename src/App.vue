@@ -4,7 +4,7 @@
   <add v-show="showAdd" @close="toggleShowAdd"/>
   <div v-show="showExitToast" class="exit-toast">Presiona atrás de nuevo para salir</div>
 
-  <div class="flex flex-col w-full min-h-[100dvh] pb-[84px] lg:pb-0 pl-0 lg:pl-[100px] bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+  <div class="flex flex-col w-full min-h-[100dvh] pb-[84px] lg:pb-0 pl-0 lg:pl-[100px] bg-white dark:bg-gray-900 text-slate-900 dark:text-gray-100">
     <RouterView />
   </div>
 
@@ -94,7 +94,7 @@
 
 <style scoped>
    nav {
-    @apply flex flex-none lg:flex-col w-full lg:w-[100px] fixed bottom-0 lg:top-0 left-0 items-center justify-evenly bg-blue-200 dark:bg-slate-800 z-20 p-2 rounded-t-xl lg:rounded-t-none lg:rounded-r-xl overflow-hidden;
+    @apply flex flex-none lg:flex-col w-full lg:w-[100px] fixed bottom-0 lg:top-0 left-0 items-center justify-evenly bg-blue-200 dark:bg-blue-900 z-20 p-2 rounded-t-xl lg:rounded-t-none lg:rounded-r-xl overflow-hidden;
   }
      nav > a,
      nav > div {
@@ -105,11 +105,11 @@
       @apply flex flex-col items-center justify-center w-fit mx-auto p-2 space-y-3 rounded-xl; 
     }
      nav a,p,i {
-       @apply flex-1 text-center font-bold text-blue-800 dark:text-slate-200;
+       @apply flex-1 text-center font-bold text-blue-800 dark:text-blue-200;
      }
 
   a.router-link-exact-active > div {
-    @apply bg-white dark:bg-slate-700 hover:bg-none;
+    @apply bg-white dark:bg-blue-800 hover:bg-none;
   }
 </style>
 

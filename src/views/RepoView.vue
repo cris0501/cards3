@@ -7,7 +7,7 @@
 
     <div v-else class="flex flex-col space-y-4">
       <div v-for="col in collections" :key="col.id"
-        class="border rounded-xl p-4 flex flex-col space-y-2 bg-white dark:bg-slate-800 dark:border-slate-700 shadow-sm">
+        class="border rounded-xl p-4 flex flex-col space-y-2 bg-white dark:bg-gray-800 dark:border-gray-700 shadow-sm">
         <p class="font-bold text-lg dark:text-white">{{ col.name }}</p>
         <p class="text-sm text-gray-500 dark:text-slate-400">{{ col.description }}</p>
         <div class="flex space-x-2 pt-1">

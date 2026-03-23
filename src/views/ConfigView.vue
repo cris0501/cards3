@@ -27,7 +27,7 @@
 
     <p class="text-2xl font-bold mb-6 dark:text-white">Categorias</p>
 
-    <div class="flex flex-col space-y-3 w-7/8 lg:w-2/3 mx-auto">
+    <div class="flex flex-col space-y-3 w-5/6 lg:w-3/4 mx-auto">
 
       <!-- Boton de importar - siempre arriba del todo -->
       <div class="border rounded-xl overflow-hidden shadow-sm bg-white dark:bg-gray-800 dark:border-gray-700">
@@ -93,10 +93,6 @@
 </template>
 
 <script setup>
-  // ConfigView.vue
-  // - shareCategory: exporta la categoria a un fichero JSON con imagenes en base64
-  // - importFile: lee un fichero JSON, guarda imagenes en IndexedDB e importa las tarjetas
-
   import { ref, computed } from 'vue'
   import { storeToRefs } from 'pinia'
   import { useWordsStore } from '@/stores/words'
@@ -117,7 +113,6 @@
   }
 
   // -- Exportar --
-
   async function shareCategory(categoryName) {
     const cards = wordsStore.categories[categoryName]
 
@@ -138,7 +133,7 @@
     const file = new File([payload], categoryName + '.json', { type: 'application/json' })
 
     if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-      navigator.share({ files: [file], title: categoryName }).catch(() => {})
+      navigator.share({ files: [file], title: categoryName }).catch(() => downloadFile(file))
     } else {
       downloadFile(file)
     }
@@ -149,7 +144,9 @@
     const a = document.createElement('a')
     a.href = url
     a.download = file.name
+    document.body.appendChild(a)
     a.click()
+    document.body.removeChild(a)
     URL.revokeObjectURL(url)
   }
 
@@ -193,3 +190,4 @@
     @apply border-b-2 border-gray-800 px-5 cursor-pointer;
   }
 </style>
+

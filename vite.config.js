@@ -15,6 +15,7 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,woff,woff2,ttf,ico,svg,png,avif}'],
         navigateFallback: '/cards3/index.html',
         navigateFallbackDenylist: [/^\/cards3\/repo\//],
+        mode: 'development',
       },
       manifest: {
         name: 'Cards',
